@@ -15,7 +15,7 @@ import java.util.Objects;
 @AllArgsConstructor
 public class PedidoService {
 
-    public PedidoDAO pedidoDAO;
+    private PedidoDAO pedidoDAO;
 
     public Pedido toPedido(String linha) throws Exception {
         validaStringPosicional(linha);
@@ -27,7 +27,7 @@ public class PedidoService {
         pedido.setQuantidade(Integer.parseInt(linha.substring(30, 32).trim()));
         pedido.setBebida(linha.substring(32, 40).trim());
         pedido.setValor(calcularValorPedido(pedido));
-        pedido.setStatus(Status.ENTREGUE);
+        pedido.setStatus(Status.RECEBIDO);
         pedido.setCriadoEm(LocalDateTime.now());
         return pedidoDAO.save(pedido);
     }
