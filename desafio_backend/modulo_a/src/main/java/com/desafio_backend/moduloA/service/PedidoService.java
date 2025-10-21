@@ -1,6 +1,7 @@
 package com.desafio_backend.moduloA.service;
 
 import com.anbima.model.Pedido;
+import com.anbima.model.PedidoMessageDTO;
 import com.anbima.model.Status;
 import com.desafio_backend.moduloA.DAO.PedidoDAO;
 import lombok.AllArgsConstructor;
@@ -17,6 +18,8 @@ public class PedidoService {
 
     private PedidoDAO pedidoDAO;
 
+    private RabbitMQService rabbitMQService;
+
     public Pedido toPedido(String linha) throws Exception {
         validaStringPosicional(linha);
 
@@ -29,7 +32,12 @@ public class PedidoService {
         pedido.setValor(calcularValorPedido(pedido));
         pedido.setStatus(Status.RECEBIDO);
         pedido.setCriadoEm(LocalDateTime.now());
-        return pedidoDAO.save(pedido);
+
+        val pedidoSalvo = pedidoDAO.save(pedido);
+
+        rabbitMQService.enviaMensagem("pedidos.recebidos", new PedidoMessageDTO(pedidoSalvo.getId()));
+
+        return pedidoSalvo;
     }
 
     private void validaStringPosicional(String linha) throws Exception {

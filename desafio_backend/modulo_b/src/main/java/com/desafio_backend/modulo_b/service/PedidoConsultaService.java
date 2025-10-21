@@ -1,8 +1,10 @@
 package com.desafio_backend.modulo_b.service;
 
 import com.anbima.model.Pedido;
+import com.anbima.model.Status;
 import com.desafio_backend.modulo_b.DAO.PedidoConsultaDAO;
 import lombok.AllArgsConstructor;
+import lombok.val;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,4 +24,9 @@ public class PedidoConsultaService {
         return pedidoConsultaDAO.findById(id);
     }
 
+    public void atualizaStatusPedido(long pedidoId) {
+        val pedido = pedidoConsultaDAO.findById(pedidoId).get();
+        pedido.setStatus(Status.ENTREGUE);
+        pedidoConsultaDAO.save(pedido);
+    }
 }
