@@ -15,9 +15,19 @@ public class PedidoController {
     private PedidoService pedidoService;
 
     @PostMapping("/posicional")
-    public ResponseEntity<Pedido> pedidoPosicional(@RequestBody String pedido) throws Exception {
-        return ResponseEntity
-                .status(HttpStatus.CREATED)
-                .body(pedidoService.salvaPedido(pedido));
+    public ResponseEntity<?> pedidoPosicional(@RequestBody String pedido) {
+        try {
+            return ResponseEntity
+                    .status(HttpStatus.CREATED)
+                    .body(pedidoService.salvaPedido(pedido));
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body(e.getMessage());
+        } catch (Exception e) {
+            return ResponseEntity
+                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(e.getMessage());
+        }
     }
 }
