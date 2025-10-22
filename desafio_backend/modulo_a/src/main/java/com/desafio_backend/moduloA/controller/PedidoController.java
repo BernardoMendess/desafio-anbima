@@ -18,6 +18,6 @@ public class PedidoController {
     public ResponseEntity<Pedido> pedidoPosicional(@RequestBody String pedido) throws Exception {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .body(pedidoService.toPedido(pedido));
+                .body(pedidoService.salvaPedido(pedido));
     }
 }

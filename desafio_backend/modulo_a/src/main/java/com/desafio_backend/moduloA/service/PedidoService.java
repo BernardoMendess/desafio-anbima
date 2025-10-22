@@ -9,6 +9,7 @@ import lombok.val;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDateTime;
 
 @Service
@@ -19,7 +20,7 @@ public class PedidoService {
 
     private RabbitMQService rabbitMQService;
 
-    public Pedido toPedido(String linha) throws Exception {
+    public Pedido salvaPedido(String linha) throws Exception {
         validarLinha(linha);
 
         val pedido = new Pedido();
@@ -68,6 +69,7 @@ public class PedidoService {
         } else {
             valor = valor.add(new BigDecimal("12.00"));
         }
-        return valor.multiply(new BigDecimal(pedido.getQuantidade()));
+        return valor.multiply(new BigDecimal(pedido.getQuantidade()))
+                .setScale(2, RoundingMode.HALF_UP);
     }
 }
