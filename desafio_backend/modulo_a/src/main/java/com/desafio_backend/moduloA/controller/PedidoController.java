@@ -1,6 +1,5 @@
 package com.desafio_backend.moduloA.controller;
 
-import com.anbima.model.Pedido;
 import com.desafio_backend.moduloA.service.PedidoService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
