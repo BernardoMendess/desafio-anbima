@@ -1,6 +1,7 @@
 package com.desafio_backend.moduloA.connections;
 
 import jakarta.annotation.PostConstruct;
+import lombok.AllArgsConstructor;
 import org.springframework.amqp.core.AmqpAdmin;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.DirectExchange;
@@ -11,14 +12,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 @Component
+@AllArgsConstructor
 public class RabbitMQConnection {
     private static final String NOME_EXCHANGE = "amq.direct";
 
     private AmqpAdmin amqpAdmin;
-
-    public RabbitMQConnection(AmqpAdmin amqpAdmin){
-        this.amqpAdmin = amqpAdmin;
-    }
 
     @Bean
     public MessageConverter jsonMessageConverter() {

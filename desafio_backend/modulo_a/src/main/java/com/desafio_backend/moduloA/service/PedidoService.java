@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 @Service
 @AllArgsConstructor
@@ -21,7 +20,7 @@ public class PedidoService {
     private RabbitMQService rabbitMQService;
 
     public Pedido toPedido(String linha) throws Exception {
-        validaStringPosicional(linha);
+        validarLinha(linha);
 
         val pedido = new Pedido();
         pedido.setTipoLanche(linha.substring(0, 10).trim());
@@ -40,23 +39,31 @@ public class PedidoService {
         return pedidoSalvo;
     }
 
-    private void validaStringPosicional(String linha) throws Exception {
-        if(linha.trim().isEmpty()){
-            throw new RuntimeException();
+    private void validarLinha(String linha) throws Exception {
+        if (linha == null || linha.length() != 40) {
+            throw new IllegalArgumentException("Linha posicional deve ter exatamente 40 caracteres.");
         }
-        if(linha.length() > 40){
-            throw new RuntimeException();
+        val qtdString = linha.substring(30, 32);
+        int quantidade;
+        try {
+            quantidade = Integer.parseInt(qtdString);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("Quantidade '" + qtdString + "' não é um número válido.");
+        }
+        if (quantidade < 1 || quantidade > 99) {
+            throw new IllegalArgumentException("Quantidade deve ser entre 01 e 99.");
         }
     }
 
     private BigDecimal calcularValorPedido(Pedido pedido){
         BigDecimal valor = new BigDecimal(0);
-        if (Objects.equals(pedido.getTipoLanche(), "HAMBURGUER")){
+        if ("HAMBURGUER".equalsIgnoreCase(pedido.getTipoLanche())) {
             valor = valor.add(new BigDecimal("20.00"));
-            if(Objects.equals(pedido.getProteina(), "CARNE") && Objects.equals(pedido.getAcompanhamento(), "SALADA")){
+            if ("CARNE".equalsIgnoreCase(pedido.getProteina()) &&
+                    "SALADA".equalsIgnoreCase(pedido.getAcompanhamento())) {
                 valor = valor.multiply(new BigDecimal("0.9"));
             }
-        } else if (Objects.equals(pedido.getTipoLanche(), "PASTEL")){
+        } else if ("PASTEL".equalsIgnoreCase(pedido.getTipoLanche())) {
             valor = valor.add(new BigDecimal("15.00"));
         } else {
             valor = valor.add(new BigDecimal("12.00"));

@@ -3,7 +3,6 @@ package com.desafio_backend.modulo_b.controller;
 import com.anbima.model.Pedido;
 import com.desafio_backend.modulo_b.service.PedidoConsultaService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,9 +14,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/pedidos")
+@AllArgsConstructor
 public class PedidoConsultaController {
 
-    @Autowired
     private PedidoConsultaService pedidoConsultaService;
 
     @GetMapping
