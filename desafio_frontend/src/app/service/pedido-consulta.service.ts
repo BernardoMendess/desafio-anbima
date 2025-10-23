@@ -12,7 +12,7 @@ export class PedidoConsultaService {
   constructor(private httpClient: HttpClient) { }
 
   findById(id: number): Observable<Pedido> {
-    return this.httpClient.post<Pedido>(this.apiUrl + "/{id}", id);
+    return this.httpClient.get<Pedido>(this.apiUrl + "/" + id);
   }
 
   findAll(): Observable<Pedido[]> {
