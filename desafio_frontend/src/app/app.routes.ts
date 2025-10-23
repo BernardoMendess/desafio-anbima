@@ -15,5 +15,15 @@ export const routes: Routes = [
     {
         path:"pedidos",
         component: ListaPedidosComponent
+    },
+    {
+        path: '',
+        redirectTo: 'pedidos',
+        pathMatch: 'full' 
+    },
+
+    {
+        path: '**',
+        redirectTo: 'pedidos' 
     }
 ];
