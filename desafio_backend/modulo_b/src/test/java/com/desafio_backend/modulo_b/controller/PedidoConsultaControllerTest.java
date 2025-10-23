@@ -35,7 +35,7 @@ public class PedidoConsultaControllerTest {
     @Test
     void quando_get_pedidos_e_nao_existem_pedidos_entao_retorna_ok_e_vazio() throws Exception {
 
-        when(pedidoConsultaService.findAll()).thenReturn(List.of());
+        when(pedidoConsultaService.findAll(null)).thenReturn(List.of());
 
         mockMvc.perform(get("/pedidos"))
                 .andExpect(status().isOk())
@@ -54,7 +54,7 @@ public class PedidoConsultaControllerTest {
 
         val listaDePedidos = List.of(p1, p2);
 
-        when(pedidoConsultaService.findAll()).thenReturn(listaDePedidos);
+        when(pedidoConsultaService.findAll(null)).thenReturn(listaDePedidos);
 
         mockMvc.perform(get("/pedidos"))
                 .andExpect(status().isOk())

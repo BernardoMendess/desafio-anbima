@@ -16,8 +16,11 @@ public class PedidoConsultaService {
 
     private PedidoConsultaDAO pedidoConsultaDAO;
 
-    public List<Pedido> findAll(){
-        return pedidoConsultaDAO.findAll();
+    public List<Pedido> findAll(String status){
+        if(status == null){
+            return pedidoConsultaDAO.findAll();
+        }
+        return pedidoConsultaDAO.findAllByStatus(Status.valueOf(status));
     }
 
     public Optional<Pedido> findById(long id){

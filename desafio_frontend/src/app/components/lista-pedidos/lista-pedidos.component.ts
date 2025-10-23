@@ -1,25 +1,32 @@
 import { Component } from '@angular/core';
 import { PedidoConsultaService } from '../../service/pedido-consulta.service';
-import { NgFor } from '@angular/common';
+import { NgFor, CurrencyPipe } from '@angular/common';
 import { Pedido } from '../../model/pedido.model';
 import { OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-lista-pedidos',
-  imports: [NgFor],
+  standalone: true,
+  imports: [NgFor, CurrencyPipe, FormsModule],
   templateUrl: './lista-pedidos.component.html',
-  styleUrl: './lista-pedidos.component.css'
+  styleUrls: ['./lista-pedidos.component.css']
 })
 export class ListaPedidosComponent implements OnInit {
 
   public pedidos: Pedido[] = [];
+  public statusFiltro: string = '';
 
   constructor(
     private pedidoConsultaService: PedidoConsultaService,
   ) { }
 
   ngOnInit() {
-    this.pedidoConsultaService.findAll().subscribe({
+    this.pesquisar();
+  }
+
+  pesquisar() {
+    this.pedidoConsultaService.findAll(this.statusFiltro).subscribe({
       next: (data: Pedido[]) => {
         this.pedidos = data;
       },

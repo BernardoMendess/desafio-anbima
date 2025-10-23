@@ -5,10 +5,7 @@ import com.desafio_backend.modulo_b.service.PedidoConsultaService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,10 +17,10 @@ public class PedidoConsultaController {
     private PedidoConsultaService pedidoConsultaService;
 
     @GetMapping
-    public ResponseEntity<List<Pedido>> list(){
+    public ResponseEntity<List<Pedido>> list(@RequestParam(required = false) String status){
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(pedidoConsultaService.findAll());
+                .body(pedidoConsultaService.findAll(status));
     }
 
     @GetMapping("/{id}")

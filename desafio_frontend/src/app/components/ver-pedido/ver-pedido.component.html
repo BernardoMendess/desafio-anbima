@@ -1,48 +1,48 @@
-<h1>Detalhes do Pedido #{{ pedido?.id }}</h1>
+<h1>Pedido #{{ pedido?.id }}</h1>
 
-<div class="detalhes-grid">
+<div>
 
-<div class="campo-item campo-status">
+<div>
     <label>Status</label>
-    <div class="valor">
+    <div>
     <span>
         {{ pedido?.status }}
     </span>
     </div>
 </div>
 
-<div class="campo-item">
+<div>
     <label>Data do Pedido</label>
-    <p class="valor">{{ pedido?.criadoEm | date: 'dd/MM/yyyy HH:mm' }}</p>
+    <p>{{ pedido?.criadoEm | date: 'dd/MM/yyyy HH:mm' }}</p>
 </div>
 
 <div>
     <label>Valor Total</label>
-    <p class="valor">{{ pedido?.valor | currency: 'BRL' }}</p>
+    <p>{{ pedido?.valor | currency: 'BRL' }}</p>
 </div>
 
 <div>
     <label>Tipo do Lanche</label>
-    <p class="valor">{{ pedido?.tipoLanche }}</p>
+    <p>{{ pedido?.tipoLanche }}</p>
 </div>
 
 <div>
     <label>Proteína</label>
-    <p class="valor">{{ pedido?.proteina }}</p>
+    <p>{{ pedido?.proteina }}</p>
 </div>
 
 <div>
     <label>Acompanhamento</label>
-    <p class="valor">{{ pedido?.acompanhamento }}</p>
+    <p>{{ pedido?.acompanhamento }}</p>
 </div>
 
 <div>
     <label>Bebida</label>
-    <p class="valor">{{ pedido?.bebida }}</p>
+    <p>{{ pedido?.bebida }}</p>
 </div>
 
 <div>
     <label>Quantidade</label>
-    <p class="valor">{{ pedido?.quantidade }}</p>
+    <p>{{ pedido?.quantidade }}</p>
 </div>
 </div>

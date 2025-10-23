@@ -20,7 +20,7 @@ public class PedidoService {
 
     private RabbitMQService rabbitMQService;
 
-    public Pedido salvaPedido(String linha) throws Exception {
+    public Pedido salvaPedido(String linha) {
         validarLinha(linha);
 
         val pedido = new Pedido();
@@ -40,7 +40,7 @@ public class PedidoService {
         return pedidoSalvo;
     }
 
-    private void validarLinha(String linha) throws Exception {
+    private void validarLinha(String linha) {
         if (linha == null || linha.length() != 40) {
             throw new IllegalArgumentException("Linha posicional deve ter exatamente 40 caracteres.");
         }

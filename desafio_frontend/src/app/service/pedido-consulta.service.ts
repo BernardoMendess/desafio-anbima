@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Pedido } from '../model/pedido.model';
@@ -15,7 +15,11 @@ export class PedidoConsultaService {
     return this.httpClient.get<Pedido>(this.apiUrl + "/" + id);
   }
 
-  findAll(): Observable<Pedido[]> {
-    return this.httpClient.get<Pedido[]>(this.apiUrl);
+  findAll(status?: string): Observable<Pedido[]> {
+    let params = new HttpParams();
+    if (status) {
+      params = params.set('status', status);
+    }
+    return this.httpClient.get<Pedido[]>(this.apiUrl, { params: params });
   }
 }
