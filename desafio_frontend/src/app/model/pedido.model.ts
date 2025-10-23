@@ -7,7 +7,7 @@ export interface Pedido {
   bebida: string;
   valor: number;
   status: Status;
-  criadoEm: string; 
+  criadoEm: Date; 
 }
 
 export type Status = 'RECEBIDO' | 'ENTREGUE';

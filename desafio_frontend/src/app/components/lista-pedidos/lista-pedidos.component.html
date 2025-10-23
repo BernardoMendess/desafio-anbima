@@ -1,0 +1,24 @@
+<h1>Pedidos</h1>
+
+<table class="table table-striped">
+  <tr>
+    <th>ID</th>
+    <th>Tipo</th>
+    <th>Proteína</th>
+    <th>Acompanhamento</th>
+    <th>Quantidade</th>
+    <th>Bebida</th>
+    <th>Valor</th>
+    <th>Status</th>
+  </tr>
+  <tr *ngFor="let pedido of pedidos">
+    <td>{{ pedido.id }}</td>
+    <td>{{ pedido.tipoLanche }}</td>
+    <td>{{ pedido.proteina }}</td>
+    <td>{{ pedido.acompanhamento }}</td>
+    <td>{{ pedido.quantidade }}</td>
+    <td>{{ pedido.bebida }}</td>
+    <td>{{ pedido.valor }}</td>
+    <td>{{ pedido.status }}</td>
+  </tr>
+</table>

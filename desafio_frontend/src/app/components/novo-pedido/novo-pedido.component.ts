@@ -19,6 +19,7 @@ export class NovoPedidoComponent {
   ) { }
 
   salvarPedido() {
+     if(!this.validaPedido()) return alert('A linha deve ter exatamente 40 caracteres.');
      this.pedidoService.save(this.pedido).pipe()
      .subscribe({
       next: () => {
@@ -30,5 +31,8 @@ export class NovoPedidoComponent {
       }
     });
   }
-  
+
+  validaPedido(): boolean {
+    return this.pedido.length == 40;
+  }
 }
