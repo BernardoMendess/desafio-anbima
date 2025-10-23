@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PedidoService } from '../../service/pedido.service';
 import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-novo-pedido',
@@ -26,8 +27,12 @@ export class NovoPedidoComponent {
         alert('Pedido cadastrado com sucesso!');
         this.router.navigate(['/pedidos']);
       },
-      error: () => {
-        alert('Ocorreu um erro. Tente novamente.');
+       error: (err: HttpErrorResponse) => {
+        if (err.status === 400 && err.error) {
+          alert(err.error);
+        } else {
+          alert("Ocorreu um erro desconhecido. Tente novamente.");
+        }      
       }
     });
   }

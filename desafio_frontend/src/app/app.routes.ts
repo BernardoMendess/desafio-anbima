@@ -21,7 +21,6 @@ export const routes: Routes = [
         redirectTo: 'pedidos',
         pathMatch: 'full' 
     },
-
     {
         path: '**',
         redirectTo: 'pedidos' 
