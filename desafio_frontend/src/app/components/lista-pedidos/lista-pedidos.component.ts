@@ -38,6 +38,11 @@ export class ListaPedidosComponent implements OnInit {
     });
   }
 
+  pesquisarSemFiltros() {
+    this.statusFiltro = '';
+    this.pesquisar();
+  }
+
   novoPedido() {
     this.router.navigate(['/pedidos/novo']);
   }
