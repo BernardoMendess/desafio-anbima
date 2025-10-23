@@ -38,4 +38,8 @@ export class VerPedidoComponent implements OnInit{
       });
     } 
   }
+
+  voltar() {
+    window.history.back();
+  }
 }

@@ -1,48 +1,76 @@
-<h1>Pedido #{{ pedido?.id }}</h1>
-
-<div>
-
-<div>
-    <label>Status</label>
-    <div>
-    <span>
-        {{ pedido?.status }}
-    </span>
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-md-8">
+      <h1>Pedido #{{ pedido?.id }}</h1>
+      <div class="row mb-3 mt-4">
+        <div class="col-sm-3">
+          <label class="fw-bold">Status</label>
+        </div>
+        <div class="col-sm-9">
+          <span class="badge bg-primary fs-6">
+            {{ pedido?.status }}
+          </span>
+        </div>
+      </div>
+      <div class="row mb-2">
+        <div class="col-sm-3">
+          <label class="fw-bold">Data do Pedido</label>
+        </div>
+        <div class="col-sm-9">
+          <p>{{ pedido?.criadoEm | date: 'dd/MM/yyyy HH:mm' }}</p>
+        </div>
+      </div>
+      <div class="row mb-2">
+        <div class="col-sm-3">
+          <label class="fw-bold">Valor Total</label>
+        </div>
+        <div class="col-sm-9">
+          <p>{{ pedido?.valor | currency: 'BRL' }}</p>
+        </div>
+      </div>
+      <div class="row mb-2">
+        <div class="col-sm-3">
+          <label class="fw-bold">Tipo do Lanche</label>
+        </div>
+        <div class="col-sm-9">
+          <p>{{ pedido?.tipoLanche }}</p>
+        </div>
+      </div>
+      <div class="row mb-2">
+        <div class="col-sm-3">
+          <label class="fw-bold">Proteína</label>
+        </div>
+        <div class="col-sm-9">
+          <p>{{ pedido?.proteina }}</p>
+        </div>
+      </div>
+      <div class="row mb-2">
+        <div class="col-sm-3">
+          <label class="fw-bold">Acompanhamento</label>
+        </div>
+        <div class="col-sm-9">
+          <p>{{ pedido?.acompanhamento }}</p>
+        </div>
+      </div>
+      <div class="row mb-2">
+        <div class="col-sm-3">
+          <label class="fw-bold">Bebida</label>
+        </div>
+        <div class="col-sm-9">
+          <p>{{ pedido?.bebida }}</p>
+        </div>
+      </div>
+      <div class="row mb-2">
+        <div class="col-sm-3">
+          <label class="fw-bold">Quantidade</label>
+        </div>
+        <div class="col-sm-9">
+          <p>{{ pedido?.quantidade }}</p>
+        </div>
+      </div>
+      <div class="text-end mt-3">
+        <button class="btn btn-secondary" (click)="voltar()">Voltar</button>
+      </div>
     </div>
-</div>
-
-<div>
-    <label>Data do Pedido</label>
-    <p>{{ pedido?.criadoEm | date: 'dd/MM/yyyy HH:mm' }}</p>
-</div>
-
-<div>
-    <label>Valor Total</label>
-    <p>{{ pedido?.valor | currency: 'BRL' }}</p>
-</div>
-
-<div>
-    <label>Tipo do Lanche</label>
-    <p>{{ pedido?.tipoLanche }}</p>
-</div>
-
-<div>
-    <label>Proteína</label>
-    <p>{{ pedido?.proteina }}</p>
-</div>
-
-<div>
-    <label>Acompanhamento</label>
-    <p>{{ pedido?.acompanhamento }}</p>
-</div>
-
-<div>
-    <label>Bebida</label>
-    <p>{{ pedido?.bebida }}</p>
-</div>
-
-<div>
-    <label>Quantidade</label>
-    <p>{{ pedido?.quantidade }}</p>
-</div>
+  </div>
 </div>

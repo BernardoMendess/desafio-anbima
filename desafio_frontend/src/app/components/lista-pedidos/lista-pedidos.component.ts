@@ -4,6 +4,7 @@ import { NgFor, CurrencyPipe } from '@angular/common';
 import { Pedido } from '../../model/pedido.model';
 import { OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-lista-pedidos',
@@ -19,6 +20,7 @@ export class ListaPedidosComponent implements OnInit {
 
   constructor(
     private pedidoConsultaService: PedidoConsultaService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -34,5 +36,13 @@ export class ListaPedidosComponent implements OnInit {
         alert('Ocorreu um erro ao carregar os pedidos. Tente novamente.');
       }
     });
+  }
+
+  novoPedido() {
+    this.router.navigate(['/pedidos/novo']);
+  }
+
+  verPedido(pedidoId: number) {
+    this.router.navigate(['/pedidos', pedidoId]);
   }
 }

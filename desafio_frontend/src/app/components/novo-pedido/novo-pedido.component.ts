@@ -35,4 +35,8 @@ export class NovoPedidoComponent {
   validaPedido(): boolean {
     return this.pedido.length == 40;
   }
+
+  voltar() {
+    window.history.back();
+  }
 }
